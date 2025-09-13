@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Application Form</title>
+  
+</head>
+  <style>
+  body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  margin: 0;
+  padding: 0;
+}
+
+.form-container {
+  width: 400px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+input, select, textarea, button {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.gender-options {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+button {
+  background: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #45a049;
+}
+
+#output {
+  margin-top: 20px;
+  padding: 15px;
+  background: #e7f4e4;
+  border: 1px solid #b2d8b0;
+  border-radius: 8px;
+  display: none;
+}
+</style>
+<body>
+  <div class="form-container">
+    <h2>Student Application Form</h2>
+    <form id="studentForm">
+      <!-- Personal Details -->
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" required placeholder="Enter full name">
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required placeholder="Enter email">
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" required placeholder="Enter phone number">
+
+      <!-- Education -->
+      <label for="course">Course Applied For:</label>
+      <select id="course" required>
+        <option value="">--Select Course--</option>
+        <option value="B.Sc">B.Sc</option>
+        <option value="B.Com">B.Com</option>
+        <option value="B.Tech">B.Tech</option>
+        <option value="MBA">MBA</option>
+      </select>
+
+      <!-- Gender -->
+      <label>Gender:</label>
+      <div class="gender-options">
+        <label><input type="radio" name="gender" value="Male" required> Male</label>
+        <label><input type="radio" name="gender" value="Female"> Female</label>
+        <label><input type="radio" name="gender" value="Other"> Other</label>
+      </div>
+
+      <!-- Address -->
+      <label for="address">Address:</label>
+      <textarea id="address" rows="3" required placeholder="Enter address"></textarea>
+
+      <!-- Submit -->
+      <button type="submit">Submit Application</button>
+    </form>
+
+    <!-- Output -->
+    <div id="output"></div>
+  </div>
+
+  <script >document.getElementById("studentForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  // Get form values
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
+  const course = document.getElementById("course").value;
+  const gender = document.querySelector("input[name='gender']:checked").value;
+  const address = document.getElementById("address").value;
+
+  // Show output
+  const outputDiv = document.getElementById("output");
+  outputDiv.style.display = "block";
+  outputDiv.innerHTML = `
+    <h3>Application Submitted</h3>
+    <p><strong>Name:</strong> ${name}</p>
+    <p><strong>Email:</strong> ${email}</p>
+    <p><strong>Phone:</strong> ${phone}</p>
+    <p><strong>Course:</strong> ${course}</p>
+    <p><strong>Gender:</strong> ${gender}</p>
+    <p><strong>Address:</strong> ${address}</p>
+  `;
+
+  // Reset form
+  document.getElementById("studentForm").reset();
+});
+</script>
+</body>
+</html>
